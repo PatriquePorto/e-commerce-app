@@ -31,7 +31,7 @@ const Color : React.FC<Props> = ({setFormData, Color}) => {
             }))
         }
         handleSelectedColors()
-    }, [selectedColors])
+    }, [selectedColors, setFormData])
 
     const handleDeleteColor = (indexToDelete: number) => {
         setSelectedColors((prevSelectedColors) => {

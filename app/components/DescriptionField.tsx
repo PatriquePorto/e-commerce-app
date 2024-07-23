@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import TextEditor from './TextEditor'
 
 interface DescriptionField {
   setDescription: React.Dispatch<React.SetStateAction<any>>
@@ -9,7 +10,7 @@ interface DescriptionField {
 
 const DescriptionField: React.FC<DescriptionField> = ({setDescription, description}) => {
   const [focus, setFocus] = useState<boolean>(false)
-  const editon = useEditor({
+  const editor = useEditor({
     extensions: [
       StarterKit
     ],
@@ -21,12 +22,12 @@ const DescriptionField: React.FC<DescriptionField> = ({setDescription, descripti
     content: description
   })
 
-  const html = editon?.getHTML()
+  const html = editor?.getHTML()
 
   useEffect(() => {
     setDescription(html)
     console.log(html)
-  }, [html])
+  }, [html, setDescription])
 
   const menuRef = useRef<HTMLDivElement>(null)
 
@@ -36,10 +37,15 @@ const DescriptionField: React.FC<DescriptionField> = ({setDescription, descripti
         setFocus(false)
       }
     }
-  })
+
+    document.addEventListener('mousedown', handler)
+  }, [])
 
   return (
-    <div>DescriptionField</div>
+    <div className={`mx-auto border-[1px] mt-4 rounded-xl ${focus ? "border-pink-500 border-[2px] ml-0" : ""}`} ref =  {menuRef}>
+      {/* <TextEditor editor={editor} /> */}
+      <EditorContent editor={editor} style={{padding: '18px'}} onClick={() => setFocus(true)} />
+    </div>
   )
 }
 

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation'
 import Size from '../components/Size'
 import Color from '../components/Color'
 import DescriptionField from '../components/DescriptionField'
+import ImageUpload from '../components/ImageUpload'
 
 type Props = {}
 
@@ -32,7 +33,9 @@ const ProductForm = (props: Props) => {
         store: '',
     })
 
-    const [Description, setDescription] = useState<String[]>([''])
+    const [Description, setDescription] = useState<string>('')
+    const [info, updateInfo] = useState<any>()
+    const [imageUrls, setImageUrls] = useState<string[]>([])
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target
@@ -51,6 +54,31 @@ const ProductForm = (props: Props) => {
         [e.target.name] : inventory,
       })
   }
+
+  const handleImageChange = () => {
+    const stringImages = JSON.stringify(imageUrls)
+    setFormData({ 
+      ...formData, 
+      images: stringImages,
+      description: Description,
+      userId: id
+    })
+  }
+
+   useEffect(() => {
+       console.log(formData.images)
+       console.log(formData)      
+    }, [formData]) 
+   
+    useEffect(() => {
+      setFormData((prevFormdata) => ({
+        ...prevFormdata,
+        description: Description,
+        images: imageUrls.toString(),
+        userId: id
+      }))
+    }, [imageUrls])
+
   return (
     <div className='px-5 max-w-[1280px] mx-auto mb-10'>
         <div>
@@ -151,10 +179,12 @@ const ProductForm = (props: Props) => {
                       </div>
                       <Color setFormData={setFormData} Color={formData.color}/>
                   </div>
-                  {/* Description field */}
-                  <label htmlFor="description" className='mt-10 inline-block font-medium'>Description about your product</label>
-                  <DescriptionField setDescription={setDescription} description={formData.description}/>
             </div>
+                 {/* Description field */}
+                 <label htmlFor="description" className='mt-10 inline-block font-medium'>Description about your product</label>
+                  <DescriptionField setDescription={setDescription} description={formData.description}/>
+                  <label htmlFor="" className='mt-10 inline-block font-medium'>Upload images</label>
+                  <ImageUpload info={info} updateInfo={updateInfo} imageUrls={imageUrls} setImageUrls={setImageUrls} handleImageChange={handleImageChange}/>
         </div>
     </div>
   )
