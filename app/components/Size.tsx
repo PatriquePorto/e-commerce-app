@@ -38,7 +38,7 @@ const Size: React.FC<ParamsProps> = ({setFormData}) => {
             </button>
         
         ))}
-        <button onClick={handleSubmit}>Submit</button>
+        <button onClick={handleSubmit} className='border-[0.5px] bg-slate-600 rounded-lg text-center text-[14px] py-[2px] cursor-pointer px-3 mt-4'>Submit</button>
     </div>
   )
 }

@@ -19,7 +19,7 @@ const ProductForm = (props: Props) => {
         title: '',
         description: `<div>
         <p>
-        Enter your text here ....
+            Enter your text here ....
         </p>
       </div>`,
         category: '',
@@ -78,6 +78,19 @@ const ProductForm = (props: Props) => {
         userId: id
       }))
     }, [imageUrls])
+
+    const postData = async () => {
+      handleImageChange()
+      try {
+        const response = await axios.post('/api/add-product', formData)
+        router.push('/')
+        console.log(response)
+      }catch (error) {
+        console.log(error)
+      }
+    }
+
+
 
   return (
     <div className='px-5 max-w-[1280px] mx-auto mb-10'>
@@ -185,6 +198,7 @@ const ProductForm = (props: Props) => {
                   <DescriptionField setDescription={setDescription} description={formData.description}/>
                   <label htmlFor="" className='mt-10 inline-block font-medium'>Upload images</label>
                   <ImageUpload info={info} updateInfo={updateInfo} imageUrls={imageUrls} setImageUrls={setImageUrls} handleImageChange={handleImageChange}/>
+                  <button onClick={postData} className='text-white mt-10 border-[1px] bg-purple-500 rounded-lg px-5'>Submit</button>
         </div>
     </div>
   )

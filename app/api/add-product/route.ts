@@ -17,10 +17,9 @@ export async function POST(request: Request) {
         store 
     } = body;
    
-    try {
-
+    try{
         const product = await prisma.product.create({
-            data: {
+            data:{
                 title,
                 description,
                 category,
@@ -33,10 +32,11 @@ export async function POST(request: Request) {
                 userId,
                 store
             }
-        });
-        return NextResponse.json(product);
-    } catch (error) {
-        console.log('Erro creating the product',error);
-        return  NextResponse.error()
+        })
+        return NextResponse.json(product)
+    }
+    catch(error){
+        console.log('Error creating the product', error)
+        return NextResponse.error()
     }
 }
