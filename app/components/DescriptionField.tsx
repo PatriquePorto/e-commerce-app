@@ -42,7 +42,7 @@ const DescriptionField: React.FC<DescriptionField> = ({setDescription, descripti
   }, [])
 
   return (
-    <div className={` mx-auto border-[1px] mt-4 rounded-xl ${focus ? "border-pink-500 border-[2px] ml-0" : ""}`} ref =  {menuRef}>
+    <div className={` mx-auto border-[1px] mt-4 rounded-xl ${focus ? "border-pink-500 border-[2px] ml-0" : "" }`} ref =  {menuRef}>
       {/* <TextEditor editor={editor} /> */}
       <EditorContent editor={editor} style={{padding: '18px'}} onClick={() => setFocus(true)} />
         

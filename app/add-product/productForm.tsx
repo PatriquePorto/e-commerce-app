@@ -105,6 +105,7 @@ const ProductForm = (props: Props) => {
                     <label htmlFor="title" className='font-medium'>Title</label>
                     <input 
                      type="text" 
+                     placeholder='Type your title'
                      className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                      name='title'
                      value={formData.title}
@@ -116,6 +117,7 @@ const ProductForm = (props: Props) => {
                     <label htmlFor="category" className='font-medium'>Category</label>
                     <input 
                         type="text" 
+                        placeholder='Type your category'
                         className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                         name='category'
                         value={formData.category}
@@ -127,6 +129,7 @@ const ProductForm = (props: Props) => {
                      <label htmlFor="style" className='font-medium'>Style</label>
                       <input 
                         type="text" 
+                        placeholder='Type your style: formal, casual, etc.'
                         className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                         name='style'
                         value={formData.style}
@@ -138,6 +141,7 @@ const ProductForm = (props: Props) => {
                      <label htmlFor="store" className='font-medium'>Store</label>
                       <input 
                         type="text" 
+                        placeholder='Type your store: nike, adidas, etc.'
                         className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                         name='store'
                         value={formData.store}
@@ -149,6 +153,7 @@ const ProductForm = (props: Props) => {
                      <label htmlFor="size" className='font-medium'>Size</label>
                       <input 
                         type="text" 
+                        placeholder='Choose your size: S, M, L, XL, XXL'
                         className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                         name='size'
                         value={formData.size}
@@ -161,6 +166,7 @@ const ProductForm = (props: Props) => {
                      <label htmlFor="inventory" className='font-medium'>Inventory</label>
                       <input 
                         type="number" 
+                        placeholder='Type your inventory number'
                         className='w-full h-[50px] border-[1px] rounded-lg focus:border-pink-500 px-3 focus:border-2 outline-none'
                         name='inventory'
                         value={formData.inventory}
@@ -194,7 +200,7 @@ const ProductForm = (props: Props) => {
                   </div>
             </div>
                  {/* Description field */}
-                 <label htmlFor="description" className='mt-10 inline-block font-medium'>Description about your product</label>
+                 <label htmlFor="description" className='mt-10 inline-block font-bold'>Description about your product</label>
                   <DescriptionField setDescription={setDescription} description={formData.description}/>
                   <label htmlFor="" className='mt-10 inline-block font-medium'>Upload images</label>
                   <ImageUpload info={info} updateInfo={updateInfo} imageUrls={imageUrls} setImageUrls={setImageUrls} handleImageChange={handleImageChange}/>
